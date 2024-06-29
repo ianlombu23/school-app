@@ -1,0 +1,270 @@
+{
+	"info": {
+		"_postman_id": "c92894cd-fe55-4c13-a0a2-78c7495ffcbf",
+		"name": "SCHOOL",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "10960428",
+		"_collection_link": "https://martian-equinox-716167.postman.co/workspace/SpringBoot~70c809b2-fb4d-4b2b-a12f-2cc81d6d4384/collection/10960428-c92894cd-fe55-4c13-a0a2-78c7495ffcbf?action=share&source=collection_link&creator=10960428"
+	},
+	"item": [
+		{
+			"name": "GATEWAY",
+			"item": [
+				{
+					"name": "ACCOUNT-GATEWAY",
+					"item": [
+						{
+							"name": "STUDENT",
+							"item": [
+								{
+									"name": "http://localhost:5050/account/v1/student/register",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"fullName\": \"Citra Kemurnian Lombu\",\n    \"dateOfBirth\": \"2023-09-23\",\n    \"gender\": \"male\",\n    \"email\": \"ianlo@gmail.com\",\n    \"phoneNumber\": \"081382829090\",\n    \"motherMaidenName\": \"Ayu\",\n    \"address\": \"Jakarta Barat\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "http://localhost:5050/account/v1/student/register"
+									},
+									"response": []
+								},
+								{
+									"name": "http://localhost:5050/account/v1/student/details/a962f2c5-c84a-41e1-82ec-abf5259d9e7e",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "http://localhost:3500/school-app/account-service/account/v1/student/details/a962f2c5-c84a-41e1-82ec-abf5259d9e7e"
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "TEACHER",
+							"item": [
+								{
+									"name": "http://localhost:3500/school-app/account-service/account/v1/teacher/register",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"fullName\": \"Indra\",\n    \"dateOfBirth\": \"1990-09-23\",\n    \"gender\": \"male\",\n    \"email\": \"indra@gmail.com\",\n    \"phoneNumber\": \"081382829090\",\n    \"address\": \"Jakarta Barat\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "http://localhost:3500/school-app/account-service/account/v1/teacher/register"
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "CLASS",
+							"item": [
+								{
+									"name": "http://localhost:5050/account/v1/class/assign-student",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"className\": \"Class 1\",\n    \"teacherId\": \"521667f3-99d7-4221-942c-ffbbdae3e4b6\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:5050/account/v1/class/assign-student?classId=3be246a5-5c8a-41a8-af14-598c9c23b90c&studentId=a962f2c5-c84a-41e1-82ec-abf5259d9e7e",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "5050",
+											"path": [
+												"account",
+												"v1",
+												"class",
+												"assign-student"
+											],
+											"query": [
+												{
+													"key": "classId",
+													"value": "3be246a5-5c8a-41a8-af14-598c9c23b90c"
+												},
+												{
+													"key": "studentId",
+													"value": "a962f2c5-c84a-41e1-82ec-abf5259d9e7e"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "http://localhost:5050/account/v1/class/create",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"className\": \"Class 1\",\n    \"teacherId\": \"521667f3-99d7-4221-942c-ffbbdae3e4b6\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "http://localhost:5050/account/v1/class/create"
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "ATTENDANCE-GATEWAY",
+					"item": [
+						{
+							"name": "http://localhost:3500/school-app/attendance-service/attendance/v1/create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"attendanceBy\": \"521667f3-99d7-4221-942c-ffbbdae3e4b6\",\n    \"classId\": \"3be246a5-5c8a-41a8-af14-598c9c23b90c\",\n    \"attendanceStatus\": \"absent\",\n    \"studentId\": \"a962f2c5-c84a-41e1-82ec-abf5259d9e7e\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:3500/school-app/attendance-service/attendance/v1/create"
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:3500/school-app/attendance-service/attendance/v1/edit",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"attendanceBy\": \"521667f3-99d7-4221-942c-ffbbdae3e4b6\",\n    \"classId\": \"3be246a5-5c8a-41a8-af14-598c9c23b90c\",\n    \"attendanceStatus\": \"absent\",\n    \"studentId\": \"a962f2c5-c84a-41e1-82ec-abf5259d9e7e\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:3500/school-app/attendance-service/attendance/v1/edit"
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:3500/school-app/attendance-service/attendance/v1/report/list?attendanceBy=521667f3-99d7-4221-942c-ffbbdae3e4b6&studentId&attendanceStatus=&classId",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"attendanceBy\": \"521667f3-99d7-4221-942c-ffbbdae3e4b6\"\n    // \"classId\": \"3be246a5-5c8a-41a8-af14-598c9c23b90c\",\n    // \"attendanceStatus\": \"absent\",\n    // \"studentId\": \"a962f2c5-c84a-41e1-82ec-abf5259d9e7e\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3500/school-app/attendance-service/attendance/v1/report/list?studentId=a962f2c5-c84a-41e1-82ec-abf5259d9e7e&attendanceStatus=SICK",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"school-app",
+										"attendance-service",
+										"attendance",
+										"v1",
+										"report",
+										"list"
+									],
+									"query": [
+										{
+											"key": "attendanceBy",
+											"value": "521667f3-99d7-4221-942c-ffbbdae3e4b6",
+											"disabled": true
+										},
+										{
+											"key": "studentId",
+											"value": "a962f2c5-c84a-41e1-82ec-abf5259d9e7e"
+										},
+										{
+											"key": "attendanceStatus",
+											"value": "SICK"
+										},
+										{
+											"key": "classId",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:3500/school-app/attendance-service/attendance/v1/report/list?attendanceBy=521667f3-99d7-4221-942c-ffbbdae3e4b6&studentId&attendanceStatus=&classId Copy",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:3500/school-app/attendance-service/attendance/v1/report/detail/2aca0511-dae5-49a6-8a4e-dd82aa1fa91c"
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
