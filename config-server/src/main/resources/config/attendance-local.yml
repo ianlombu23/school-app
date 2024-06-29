@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:2600/attendance?useLegacyDatetimeCode=false&serverTimezone=Asia/Jakarta
+
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    fetchRegistry: true
+    registerWithEureka: true
+    serviceUrl:
+      defaultZone: http://localhost:3000/eureka/
+
+client:
+  school:
+    account:
+      base-url: http://localhost:3500/school-app/account-service
+      student-details:
+        url: ${client.school.account.base-url}/account/v1/student/details/

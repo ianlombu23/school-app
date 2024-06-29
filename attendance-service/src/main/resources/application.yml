@@ -1,0 +1,9 @@
+server:
+  port: 5030
+spring:
+  application:
+    name: attendance
+  profiles:
+    active: local
+  config:
+    import: optional:configserver:http://localhost:3030/

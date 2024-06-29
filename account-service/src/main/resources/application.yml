@@ -1,0 +1,9 @@
+server:
+  port: 5050
+spring:
+  application:
+    name: account
+  profiles:
+    active: local
+  config:
+    import: optional:configserver:http://localhost:3030/
