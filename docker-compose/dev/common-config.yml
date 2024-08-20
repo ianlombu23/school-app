@@ -1,0 +1,51 @@
+services:
+  network-deploy-service:
+    networks:
+      - iannetwork
+
+  microservice-base-config:
+    extends:
+      service: network-deploy-service
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    environment:
+      JAVA_TOOL_OPTIONS: -javaagent:/usr/src/app/opentelemetry-javaagent.jar
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://tempo:4317
+      OTEL_METRICS_EXPORTER: none
+
+  microservice-configserver-config:
+    extends:
+      service: microservice-base-config
+    environment:
+      SPRING_PROFILES_ACTIVE: local
+      SPRING_CONFIG_IMPORT: configserver:http://configserver:3030/
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+
+  microservice-eureka-config:
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://ms-service-registry:3000/eureka/
+    extends:
+      service: microservice-configserver-config
+
+  microservice-eureka:
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://ms-service-registry:3000/eureka/
+    extends:
+      service: network-deploy-service
+
+  microservice-db-config:
+    extends:
+      service: network-deploy-service
+    image: mysql
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      timeout: 10s
+      retries: 10
+      interval: 10s
+      start_period: 10s
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+
