@@ -3,6 +3,7 @@ package com.school.app.accountservice.controller;
 import com.school.app.accountservice.dto.request.TeacherRegisterRequest;
 import com.school.app.accountservice.entity.Teacher;
 import com.school.app.accountservice.service.TeacherRegisterService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,7 +18,7 @@ public class TeacherController {
     private final TeacherRegisterService teacherRegisterService;
 
     @PostMapping("/register")
-    public Teacher studentRegister(@RequestBody TeacherRegisterRequest teacherRegisterRequest) {
+    public Teacher studentRegister(@Valid @RequestBody TeacherRegisterRequest teacherRegisterRequest) {
         return teacherRegisterService.teacherRegister(teacherRegisterRequest);
     }
 }
